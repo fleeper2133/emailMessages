@@ -53,7 +53,15 @@ npm install
 npm run dev-loc
 ```
 
-### 8. Убедитесь, что у вас есть redis-server
+### 8. Создать папки для файлов
+
+В корне проекта создайте папки media и внутри media папку files
+
+```bash
+mkdir media && mkdir media/files
+```
+
+### 9. Убедитесь, что у вас есть redis-server
 
 Для Linux:
 
@@ -61,7 +69,7 @@ npm run dev-loc
 sudo apt install redis-server
 ```
 
-### 6. Запустите сервер
+### 10. Запустите сервер
 
 ```bash
 python manage.py runserver
