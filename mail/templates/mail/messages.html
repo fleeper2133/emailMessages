@@ -1,0 +1,43 @@
+{% extends 'mail/base.html' %}
+
+{% block content %}
+  <div  id="vue-messages">
+    <h1>{{ email.login }}</h1>
+    <h2 style="color: red">[[ error ]]</h2>
+    <h3>[[ messages.length ]]/[[ quantity ]]</h3>
+    <b-progress :value="messages.length" :max="quantity" show-progress animated></b-progress>
+    <svg style="cursor: pointer" v-if="!reverse" @click="reverse = !reverse" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+    </svg>
+    <svg v-else style="cursor: pointer" @click="reverse = !reverse" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+      </svg>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Тема</th>
+            <th scope="col">Текст</th>
+            <th scope="col">Дата отправления</th>
+            <th scope="col">Дата получения</th>
+            <th scope="col">Файлы</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="message in reversedMessages">
+            <th scope="row">[[ message.mail_id ]]</th>
+            <td>[[ message.subject ]]</td>
+            <td>[[ message.text ]]</td>
+            <td>[[ message.date_send ]]</td>
+            <td>[[ message.date_receipt ]]</td>
+            <td>
+                <ul>
+                    <li v-for="file in message.files"><a target="_blank" :href="file.url">[[ file.name ]]</a></li>
+                </ul>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+  </div>
+{% endblock %}

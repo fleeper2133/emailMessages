@@ -1,0 +1,25 @@
+{% extends 'mail/base.html' %}
+
+{% block content %}
+  <div class="row container mt-15">
+    <form method="post">
+        {% csrf_token %}
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+        <input type="text" class="form-control" name="login" placeholder="login" aria-label="Username" aria-describedby="basic-addon1" />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon2">App password</span>
+        <input type="text" class="form-control" name="password" placeholder="password" aria-label="Password" aria-describedby="basic-addon1" />
+        <span style="margin-left: 5rem;">Нужен «Пароль для внешних приложений»</span>
+      </div>
+      <span class="input-group-text" id="basic-addon1">Port</span>
+      <select class="form-select" aria-label="Default select example" name="port">
+        <option value="mail">mail</option>
+        <option value="yandex">yandex</option>
+        <option value="gmail">gmail</option>
+      </select>
+      <button class="btn btn-primary mt-3">Войти</button>
+    </form>
+  </div>
+{% endblock %}
